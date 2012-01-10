@@ -1,4 +1,4 @@
-Markit - Data APIs
+Markit On Demand - Data APIs
 =================
 
 Usage
