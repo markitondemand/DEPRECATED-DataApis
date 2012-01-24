@@ -1,17 +1,15 @@
 ﻿/** 
- * Version 1.0, Jan 2012
+ * Version 1.1, Jan 2012
  */
 var Markit = {};
 /**
  * Define the TimeseriesService.
  * First argument is symbol (string) for the quote. Examples: AAPL, MSFT, JNJ, GOOG.
  * Second argument is duration (int) for how many days of history to retrieve.
- * Third argument is fCallback, a callback function executed onSuccess of API.
  */
-Markit.TimeseriesService = function(symbol,duration,fCallback){
+Markit.TimeseriesService = function(symbol,duration){
     this.symbol = symbol;
     this.duration = duration;
-    this.fCallback = fCallback;
     this.PlotChart();
 };
 
@@ -47,7 +45,7 @@ Markit.TimeseriesService.prototype.BuildDataAndChart = function(json){
 	
     //Build array of arrays of date & price values
     //Market data is inherently irregular 
-    //and HighCharts likes regularity (for axis intervals)
+    //and HighCharts doesn't really like irregularity (for axis intervals, anyway)
     for (var i=0; i<closeDSLen;i++){
         var dat = new Date(dateDS[i]);
         var dateIn = Date.UTC(dat.getFullYear(), dat.getMonth(), dat.getDate());
