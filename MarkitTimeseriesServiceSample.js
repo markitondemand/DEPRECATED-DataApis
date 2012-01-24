@@ -43,9 +43,11 @@ Markit.TimeseriesService.prototype.BuildDataAndChart = function(json){
         closeDSLen = closeDS.length,
         irregularIntervalDS = [];
 	
-    //Build array of arrays of date & price values
-    //Market data is inherently irregular 
-    //and HighCharts doesn't really like irregularity (for axis intervals, anyway)
+    /**
+     * Build array of arrays of date & price values
+     * Market data is inherently irregular and HighCharts doesn't 
+     * really like irregularity (for axis intervals, anyway)
+     */
     for (var i=0; i<closeDSLen;i++){
         var dat = new Date(dateDS[i]);
         var dateIn = Date.UTC(dat.getFullYear(), dat.getMonth(), dat.getDate());
