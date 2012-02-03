@@ -28,6 +28,11 @@ Markit.TimeseriesService.prototype.PlotChart = function(){
         dataType: "jsonp",
         context: this,
         success: function(json){
+        	//Catch errors
+		    if (!json.Data || json.Message){
+		        console.error("Error: ", json.Message);
+		        return;
+		    }
             this.BuildDataAndChart(json);
         },
         error: function(){
@@ -130,5 +135,5 @@ new Markit.TimeseriesService("GOOG", 365);
 
 /**
 * Need help? Visit the API documentation at:
-* http://jobs.markitondemand.com/MarketDataApi
+* http://jobs.markitondemand.com/APIs
 */
