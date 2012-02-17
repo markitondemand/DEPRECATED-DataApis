@@ -11,7 +11,7 @@ var Markit = {};
 Markit.QuoteService = function(sSymbol, fCallback) {
     this.symbol = sSymbol;
     this.fCallback = fCallback;
-    this.DATA_SRC = "http://jobs.markitondemand.com/Api/Quote/jsonp";
+    this.DATA_SRC = "http://dev.markitondemand.com/Api/Quote/jsonp";
     this.makeRequest();
 };
 /**
@@ -59,6 +59,6 @@ new Markit.QuoteService("AAPL", function(jsonResult) {
 
     /**
     * Need help? Visit the API documentation at:
-    * http://jobs.markitondemand.com/APIs
+    * http://dev.markitondemand.com
     */
 });

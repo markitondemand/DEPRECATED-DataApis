@@ -24,7 +24,7 @@ Markit.TimeseriesService.prototype.PlotChart = function(){
             symbol: this.symbol, 
             duration: this.duration 
         },
-        url: "http://jobs.markitondemand.com/Api/Timeseries/jsonp",
+        url: "http://dev.markitondemand.com/Api/Timeseries/jsonp",
         dataType: "jsonp",
         context: this,
         success: function(json){
@@ -135,5 +135,5 @@ new Markit.TimeseriesService("GOOG", 365);
 
 /**
 * Need help? Visit the API documentation at:
-* http://jobs.markitondemand.com/APIs
+* http://dev.markitondemand.com
 */

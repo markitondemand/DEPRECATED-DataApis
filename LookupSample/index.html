@@ -12,9 +12,9 @@
 		<div class="span12">
 			<h2>Markit On Demand &mdash; Lookup API Sample</h2>
 
-			<p>The Company Lookup API is useful for determining the stock ticker or symbol a company&rsquo;s stock is traded with. For example, Google&rsquo;s symbol is <a href="http://www.google.com/finance?q=GOOG">GOOG</a>. Apple&rsquo;s is <a href="http://www.google.com/finance?q=AAPL">AAPL</a>. To use <a href="http://jobs.markitondemand.com/APIs">our APIs</a>, a symbol is required as one of the inputs. The Company Lookup API response includes the company&rsquo;s symbol, its full name, and the exchange it&rsquo;s traded on.</p>
+			<p>The Company Lookup API is useful for determining the stock ticker or symbol a company&rsquo;s stock is traded with. For example, Google&rsquo;s symbol is <a href="http://www.google.com/finance?q=GOOG">GOOG</a>. Apple&rsquo;s is <a href="http://www.google.com/finance?q=AAPL">AAPL</a>. To use <a href="http://dev.markitondemand.com/">our APIs</a>, a symbol is required as one of the inputs. The Company Lookup API response includes the company&rsquo;s symbol, its full name, and the exchange it&rsquo;s traded on.</p>
 
-			<p><a href="http://jobs.markitondemand.com/APIs#companylookup">Read the Lookup API documentation</a> or check out <a href="http://jobs.markitondemand.com/APIs">our other data APIs</a>.
+			<p><a href="http://dev.markitondemand.com/#companylookup">Read the Lookup API documentation</a> or check out <a href="http://dev.markitondemand.com/">our other data APIs</a>.
 
 			<p><iframe src="http://markdotto.github.com/github-buttons/github-btn.html?user=markitondemand&amp;type=follow" allowtransparency="true" frameborder="0" scrolling="0" width="177px" height="20px"></iframe></p>
 			
@@ -26,7 +26,7 @@
         		<button type="submit" class="btn">Search</button>
 			</form>
 
-			<p class="terms">Markit On Demand has provided these web services for limited purposes. <a href="http://jobs.markitondemand.com/APIs#termsofuse">Read the MIT License and full terms of use</a> before coding.</p>
+			<p class="terms">Markit On Demand has provided these web services for limited purposes. <a href="http://dev.markitondemand.com/#termsofuse">Read the MIT License and full terms of use</a> before coding.</p>
 		</div>
 	</div>
 </div>
@@ -42,7 +42,7 @@
 		$("#symbolsearch").autocomplete({
 			source: function( request, response ) {
 				$.ajax({
-					url: "http://jobs.markitondemand.com/api/Lookup/jsonp",
+					url: "http://dev.markitondemand.com/api/Lookup/jsonp",
 					dataType: "jsonp",
 					data: {
 						input: request.term
