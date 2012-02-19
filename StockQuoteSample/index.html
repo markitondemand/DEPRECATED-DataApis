@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Markit On Demand Stock Quote API Demo</title>
+	<link rel="stylesheet" href="resources/bootstrap.min.css" />
+	<link rel="stylesheet" href="resources/demo.css" />
+</head>
+<body>
+
+<div class="container">
+	<div class="row">
+		<div class="span12">
+			<div class="hero-unit">
+				<h2>Markit On Demand &mdash; Stock Quote API Sample</h2>
+
+				<p>The Stock Quote API is useful for determining the current value of a company&rsquo;s stock. The response of this API contains price information for companies traded on the BATS Exchange in the United States. The result set includes the most current trading price of the share, the volume of that company&rsquo;s stock, the change and change percent since the previous day&rsquo;s close, and more.</p>
+
+				<p><a href="http://dev.markitondemand.com/#stockquote">Read the Stock Quote API documentation</a> or check out <a href="http://dev.markitondemand.com/">our other data APIs</a>.
+
+				<p><iframe src="http://markdotto.github.com/github-buttons/github-btn.html?user=markitondemand&amp;type=follow&amp;size=" allowtransparency="true" frameborder="0" scrolling="0" width="177px" height="20px"></iframe></p>
+			</div>
+		</div>
+	</div>
+	<div class="row content">
+		<div class="span12">
+			<h3>Demo</h3>
+			
+			<form class="well control-group form-inline">
+				<label>Try "AAPL" or "MSFT" or "GE":</label>
+				<input type="text" id="symbol" class="input-" placeholder="Enter symbol">
+        		<button type="submit" class="btn btn-primary" data-loading-text="Loading quote data...">Get Quote</button>
+        		<span class="help-inline">Want more symbols? <a href="http://dev.markitondemand.com/#companylookup" target="_blank">Try our Lookup API</a>.</span>
+			</form>
+
+			<p class="terms">Markit On Demand has provided these web services for limited purposes. <a href="http://dev.markitondemand.com/#termsofuse">Read the MIT License and full terms of use</a> before coding.</p>
+		</div>
+	</div>
+</div>
+
+<footer class="footer"><div class="container"><div class="row"><div class="span12"><div class="pull-left"><p>Copyright &copy; 2012 Markit Group Limited. ALL DATA PROVIDED AS IS, WITH NO WARRANTIES. All rights reserved.</p><ul class="unstyled row-fluid"><li><a target="_blank" href="http://www.markit.com/en/about/legal/privacy-policy.page">Privacy Policy</a></li><li><a class="termsButton" target="_blank" href="http://www.markit.com/en/about/legal/terms-of-use.page">Terms of Use</a></li><li><a target="_blank" href="http://www.markit.com/en/about/legal/disclaimer.page">Disclaimer</a></li><li><a target="_blank" href="http://www.markit.com/en/about/contact/contact-us.page">Contact us</a></li></ul></div><div class="pull-right logo"></div></div></div></div></footer>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="resources/bootstrap.min.js"></script>
+<script type="text/javascript" src="resources/QuoteService.js"></script>
+
+<script type="text/javascript">
+
+	$(function(){
+
+		$("button").button();
+		$("#symbol").focus();
+		
+		//form submit event
+		$("form").submit(function(e){
+
+			e.preventDefault();
+
+			$("button").button("loading");
+			
+			new Markit.QuoteService($("#symbol").val(), function(jsonResult) {
+				
+				this.clearResult();
+
+			    //Catch errors
+			    if (!jsonResult.Data || jsonResult.Message){
+			        this.renderAlert(jsonResult);
+			        return;
+			    }
+
+			    this.success(jsonResult);
+			    
+			});
+		});
+	});
+
+	//prototype some methods onto our Quote Service
+	Markit.QuoteService.prototype.clearResult = function(){
+		this.resetForm();
+		$("#resultContainer").remove();
+		$("div.alert").remove();
+	};
+
+	Markit.QuoteService.prototype.resetForm = function(){
+		$("button").button("reset");
+		$("form").removeClass("error");
+		$("#symbol")
+			.val($("#symbol").val().toUpperCase())
+			.select()
+			.focus();	
+	};
+
+	Markit.QuoteService.prototype.success = function(jsonResult){
+		var $container = $("<div class='hide' id='resultContainer' />");
+		$container.append("<h4>"+jsonResult.Data.Name+" ("+jsonResult.Data.Symbol+")</h4>");
+		$container.append(this.renderResultTable(jsonResult));
+
+		$("form").after($container);
+		$container.fadeIn('fast');
+		this.resetForm();
+		console.log(jsonResult.Data)
+	};
+
+	Markit.QuoteService.prototype.renderAlert = function(jsonResult){
+		$("form").addClass("error");
+		$("form").before("<div class='alert alert-error'><a class='close' data-dismiss='alert'>&times;</a>"+jsonResult.Message+"</div>");
+		$(".alert").alert()
+	};
+
+	Markit.QuoteService.prototype.renderResultTable = function(jsonResult){
+		var $table = $("<table />"),
+			$thead = $("<thead />"),
+			$tbody = $("<tbody />"),
+			tableHeadCells = [];
+			tableCells = [];
+		
+		tableHeadCells.push("<tr>");
+		tableHeadCells.push("<th>Last Price</th>");
+		tableHeadCells.push("<th>Change</th>");
+		tableHeadCells.push("<th>Change Percent</th>");
+		tableHeadCells.push("<th>Change Percent YTD</th>");
+		tableHeadCells.push("<th>Last Traded</th>");
+		tableHeadCells.push("</tr>");
+
+		tableCells.push("<tr>");
+		tableCells.push("<td>$",jsonResult.Data.LastPrice,"</td>");
+		tableCells.push("<td>",this.formatChgPct(jsonResult.Data.Change),"</td>");
+		tableCells.push("<td>",jsonResult.Data.ChangePercent.toFixed(2),"%</td>");
+		tableCells.push("<td>",jsonResult.Data.ChangePercentYTD.toFixed(2),"%</td>");
+		tableCells.push("<td>",jsonResult.Data.Timestamp,"</td>");
+		tableCells.push("</tr>");
+
+		$table.addClass("table table-bordered table-striped");			
+		$thead.append(tableHeadCells.join(""));
+		$tbody.append(tableCells.join(""));
+
+		$table.append($thead).append($tbody);
+
+		return $table;
+	};
+
+	Markit.QuoteService.prototype.formatChgPct = function(chg){
+		return (chg < 0) ? "-" + chg.toFixed(2) : "+" + chg.toFixed(2);	
+	};
+
+</script>
+
+</body>
+</html>

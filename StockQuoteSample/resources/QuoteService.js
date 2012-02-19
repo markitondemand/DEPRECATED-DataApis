@@ -43,22 +43,3 @@ Markit.QuoteService.prototype.makeRequest = function() {
     });
 };
 
-new Markit.QuoteService("AAPL", function(jsonResult) {
-
-    //Catch errors
-    if (!jsonResult.Data || jsonResult.Message){
-        console.error("Error: ", jsonResult.Message);
-        return;
-    }
-
-    //If all goes well, your quote will be here.
-    console.log(jsonResult);
-
-    //Now proceed to do something with the data.
-    $("h1").first().text(jsonResult.Data.Name);
-
-    /**
-    * Need help? Visit the API documentation at:
-    * http://dev.markitondemand.com
-    */
-});
