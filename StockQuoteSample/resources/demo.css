@@ -1,3 +1,7 @@
+p.terms {
+	font-size:11px;
+	margin-top:20px;
+}
 
 #resultContainer h4 { margin-bottom:8px; }
 #resultContainer th, #resultContainer td { text-align:right; }
