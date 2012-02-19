@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Markit On Demand Lookup API Demo</title>
+	<link rel="stylesheet" href="resources/bootstrap.min.css" />
+	<link rel="stylesheet" href="resources/demo.css" />
+</head>
+<body>
+
+<div class="container">
+	<div class="row">
+		<div class="span12">
+			<div class="hero-unit">
+				<h2>Markit On Demand &mdash; Lookup API Sample</h2>
+
+				<p>The Company Lookup API is useful for determining the stock ticker or symbol a company&rsquo;s stock is traded with. For example, Google&rsquo;s symbol is <a href="http://www.google.com/finance?q=GOOG">GOOG</a>. Apple&rsquo;s is <a href="http://www.google.com/finance?q=AAPL">AAPL</a>. To use <a href="http://dev.markitondemand.com/">our APIs</a>, a symbol is required as one of the inputs. The Company Lookup API response includes the company&rsquo;s symbol, its full name, and the exchange it&rsquo;s traded on.</p>
+
+				<p><a href="http://dev.markitondemand.com/#companylookup">Read the Lookup API documentation</a> or check out <a href="http://dev.markitondemand.com/">our other data APIs</a>.
+
+				<p><iframe src="http://markdotto.github.com/github-buttons/github-btn.html?user=markitondemand&amp;type=follow" allowtransparency="true" frameborder="0" scrolling="0" width="177px" height="20px"></iframe></p>
+			</div>
+		</div>
+	</div>
+	<div class="row content">
+		<div class="span12">
+			<h3>Demo</h3>
+			
+			<form class="well form-inline">
+				<label>Try typing "Micro" or "GE":</label>
+				<input type="text" id="symbolsearch" class="input-" placeholder="Enter company name or symbol">
+			</form>
+
+			<p class="terms">Markit On Demand has provided these web services for limited purposes. <a href="http://dev.markitondemand.com/#termsofuse">Read the MIT License and full terms of use</a> before coding.</p>
+		</div>
+	</div>
+</div>
+
+<footer class="footer"><div class="container"><div class="row"><div class="span12"><div class="pull-left"><p>Copyright &copy; 2012 Markit Group Limited. ALL DATA PROVIDED AS IS, WITH NO WARRANTIES. All rights reserved.</p><ul class="unstyled row-fluid"><li><a target="_blank" href="http://www.markit.com/en/about/legal/privacy-policy.page">Privacy Policy</a></li><li><a class="termsButton" target="_blank" href="http://www.markit.com/en/about/legal/terms-of-use.page">Terms of Use</a></li><li><a target="_blank" href="http://www.markit.com/en/about/legal/disclaimer.page">Disclaimer</a></li><li><a target="_blank" href="http://www.markit.com/en/about/contact/contact-us.page">Contact us</a></li></ul></div><div class="pull-right logo"></div></div></div></div></footer>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="resources/jquery-ui-1.8.17.custom.min.js"></script>
+<script type="text/javascript" src="resources/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+
+	$(function() {
+
+		$("#symbolsearch").focus();
+
+		$("#symbolsearch").autocomplete({
+			source: function( request, response ) {
+				$.ajax({
+					url: "http://dev.markitondemand.com/api/Lookup/jsonp",
+					dataType: "jsonp",
+					data: {
+						input: request.term
+					},
+					success: function( data ) {
+						response( $.map( data, function( item ) {
+							return {
+								label: item.Name + " (" +item.Exchange+ ")",
+								value: item.Symbol
+							}
+						}));
+					}
+				});
+			},
+			minLength: 2,
+			select: function( event, ui ) {
+				console.log(ui.item);
+			},
+			open: function() {
+				$( this ).removeClass( "ui-corner-all" ).addClass( "ui-corner-top" );
+			},
+			close: function() {
+				$( this ).removeClass( "ui-corner-top" ).addClass( "ui-corner-all" );
+			}
+		});
+	});
+
+</script>
+
+</body>
+</html>
