@@ -4,5 +4,5 @@
 ehthumbs.db
 Icon?
 Thumbs.db
-data_apis.sublime-project
-data_apis.sublime-workspace
+*.sublime-project
+*.sublime-workspace
