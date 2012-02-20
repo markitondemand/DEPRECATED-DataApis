@@ -29,6 +29,8 @@
 			<form class="well form-inline">
 				<label>Try typing "Micro" or "GE":</label>
 				<input type="text" id="symbolsearch" class="input-" placeholder="Enter company name or symbol">
+				<span class="help-inline hide"><img src="resources/spinner.gif" align="absmiddle" /> loading...</span>
+				<span class="help-inline hide label label-info"></span>
 			</form>
 
 			<p class="terms">Markit On Demand has provided these web services for limited purposes. <a href="http://dev.markitondemand.com/#termsofuse">Read the MIT License and full terms of use</a> before coding.</p>
@@ -47,37 +49,44 @@
 
 	$(function() {
 
-		$("#symbolsearch").focus();
-
-		$("#symbolsearch").autocomplete({
-			source: function( request, response ) {
-				$.ajax({
-					url: "http://dev.markitondemand.com/api/Lookup/jsonp",
-					dataType: "jsonp",
-					data: {
-						input: request.term
-					},
-					success: function( data ) {
-						response( $.map( data, function( item ) {
-							return {
-								label: item.Name + " (" +item.Exchange+ ")",
-								value: item.Symbol
-							}
-						}));
-					}
-				});
-			},
-			minLength: 2,
-			select: function( event, ui ) {
-				console.log(ui.item);
-			},
-			open: function() {
-				$( this ).removeClass( "ui-corner-all" ).addClass( "ui-corner-top" );
-			},
-			close: function() {
-				$( this ).removeClass( "ui-corner-top" ).addClass( "ui-corner-all" );
-			}
-		});
+		$("#symbolsearch")
+			.focus()
+			.autocomplete({
+				source: function(request,response) {
+					$.ajax({
+						beforeSend: function(){ 
+							$("span.help-inline").show();
+							$("span.label-info").empty().hide();
+						},
+						url: "http://dev.markitondemand.com/api/Lookup/jsonp",
+						dataType: "jsonp",
+						data: {
+							input: request.term
+						},
+						success: function(data) {
+							response( $.map(data, function(item) {
+								return {
+									label: item.Name + " (" +item.Exchange+ ")",
+									value: item.Symbol
+								}
+							}));
+							$("span.help-inline").hide();
+						}
+					});
+				},
+				minLength: 0,
+				select: function( event, ui ) {
+					//console.log(ui.item);
+					$("span.label-info").html("You selected " + ui.item.label).fadeIn("fast");
+				},
+				open: function() {
+					$(this).removeClass("ui-corner-all").addClass("ui-corner-top");
+				},
+				close: function() {
+					$(this).removeClass("ui-corner-top").addClass("ui-corner-all");
+				}
+			})
+		;
 	});
 
 </script>
