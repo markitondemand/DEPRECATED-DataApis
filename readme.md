@@ -7,3 +7,11 @@ We have a few APIs for you to play around with, and we’re working to add some 
 ##Usage
 
 This repository contains a couple usage examples to get you started, but you should visit [dev.markitondemand.com](http://dev.markitondemand.com/) for full details, documentation and terms of use.
+
+###Lookup API Demo
+
+Take a peek under the covers of the Lookup API demo at [markitondemand.github.com/DataApis/LookupSample](http://markitondemand.github.com/DataApis/LookupSample/).
+
+###Stock Quote API Demo
+
+Take a peek under the covers of the Stock Quote API demo at [markitondemand.github.com/DataApis/StockQuoteSample](http://markitondemand.github.com/DataApis/StockQuoteSample/).
