@@ -126,7 +126,7 @@
 		tableCells.push("<tr>");
 		tableCells.push("<td>$",jsonResult.Data.LastPrice,"</td>");
 		tableCells.push("<td>",this.formatChgPct(jsonResult.Data.Change),"</td>");
-		tableCells.push("<td>",jsonResult.Data.ChangePercent.toFixed(2),"%</td>");
+		tableCells.push("<td>",this.formatChgPct(jsonResult.Data.ChangePercent),"%</td>");
 		tableCells.push("<td>",jsonResult.Data.ChangePercentYTD.toFixed(2),"%</td>");
 		tableCells.push("<td>",jsonResult.Data.Timestamp,"</td>");
 		tableCells.push("</tr>");
