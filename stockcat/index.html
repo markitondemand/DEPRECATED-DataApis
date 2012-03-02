@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Stock Cat</title>
+
+		<link rel="stylesheet" type="text/css" href="resources/styles/stockCat.css"/>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+		<script type="text/javascript" src="resources/script/respawn-0.2.js"></script>
+		<script type="text/javascript" src="resources/script/stockcat.js"></script>
+
+	</head>
+	<body>
+	    <div class="container">
+	        <div id="lookupPopUpContainer" class="hide">
+	                   
+	            <div class="symbolLookupFormContainer">   
+	                <form id="symbolLookupForm">
+                        Company Name:<br /> 
+                        <input type="text" name="companyName" /><br />
+                        <input type="submit" value="submit" />
+                    </form>           
+	             </div> 
+	             <div class="symbolLookupResults"></div>  
+	             <a href="javascript:void(0);" id="close"></a>               
+	         </div>
+	         <div class="darkenBackground hide" ></div>
+	        <canvas id="canvas" width="800" height="500"></canvas><br />
+		    <strong>Directions</strong>
+		    <div class="directions">Click on Stock Cat's mouth to feed him a stock symbol.</div>
+		    <div class="directions">Click the dish to find stock symbols to feed to Stock Cat. Here you can click on symbols to feed Stock Cat.</div>
+		    <br />
+	    	<div class="disclaimer">All images by <strong>Tina L Berger</strong> email:<a href="mailto:tinalberger@gmail.com">tinalberger@gmail.com</a> ~ site: <a href="http://www.kapolenadesigns.com" target="_blank">kapolenadesigns.com</a></div>
+	    	<div class="disclaimer">Respawn.js by <strong>Luke Smith</strong> contact info inside file</div>
+		    <div class="disclaimer">Market data, in some cases, is as of previous close. Market data is provided by Thomson Reuters DataScope or BATS (Better Alternative Trading System), an electronic exchange that processes about 10 percent of the equity trading volume in the United States.</div>
+		    <div class="disclaimer">Markit On Demand has provided these web services for the limited purposes of use by prospective employees in developing test applications; Markit On Demand personnel in developing test applications; and other individuals Markit On Demand has permitted to develop test applications. Commercial use, or any use outside of the intended scope, is expressly prohibited.</div>
+		    <div id="catFood"></div>
+		</div>
+	</body>
+</html>

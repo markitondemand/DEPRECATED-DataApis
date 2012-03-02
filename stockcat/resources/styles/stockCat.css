@@ -1,0 +1,95 @@
+body {
+	background: #E7EBF0 url("../images/backgroundVertical.png") repeat-x 0 -80px;
+	color: #666;
+	padding: 0;
+	margin: 0;
+    font: normal 11px Arial, "Helvetica Neue", Helvetica, sans-serif
+}
+canvas {background: transparent url("../images/StockCatLogo.png") no-repeat -7px 10px;margin-top: 20px;}
+div.directions{padding: 10px 0 0 10px;}
+div.disclaimer
+{
+    padding-top:10px;
+    text-align: left;
+    font-size:10px;
+}
+div.clear{clear: both;}
+div.container {margin: 0px auto;width:800px;}
+div.container a{text-decoration:none; color:#406B39;}
+div.container a:hover{text-decoration:none; color:#7BCE6E;}
+
+/*Symbol Lookup*/
+#catFood {
+    background:url("../images/stockcatDish.png") no-repeat 0 0;
+    height:83px;
+    width:106px;
+    float:left;
+    display:block;
+    position:relative;
+    top:-323px;
+    left:63px;
+}
+
+input { -webkit-border-radius: 4px; border-radius: 4px; width:84px;}
+#lookupPopUpContainer{
+    height:507px;
+    width:800px;
+    position:fixed;
+    top: -17px;
+    margin:0px auto;
+    z-index:100;
+    background:url("../images/fish.png") no-repeat 0 0;
+}
+div.hide{display:none;}
+div.show{display:block;}
+div.symbolLookupFormContainer
+{
+    margin: 242px 0px 0px 97px;
+    float:left;
+    text-align:right;
+    color:#10FFFF;
+}
+div.symbolLookupResults
+{
+    display:block;
+    float:left;
+    -webkit-border-radius: 5px;
+    border-radius: 5px; 
+    width:262px;
+    height:169px;
+    margin:183px 0 0 10px;
+    overflow:auto;
+    overflow-x:hidden;
+}
+table#resultsTable {width:100%; }
+#resultsTable tr td{ font-size:11px; padding:5px 25px 0 0;}
+#resultsTable tr td.hover{ background-color:#10FFFF;cursor:pointer; }
+#resultsTable thead tr th{font-weight:bold;text-align:left;}
+#resultsTable thead tr th.symbol{width:53px;}
+span.noResults{
+    font-weight:bold; 
+    width:100%;
+    padding:10px;
+    display:inline-block; 
+    font-size:16px;
+}
+.darkenBackground {
+    background-color: rgb(0, 0, 0);
+    opacity: 0.7; /* Safari, Opera */
+    -moz-opacity:0.70; /* FireFox */
+    filter: alpha(opacity=70); /* IE */
+    z-index: 20;
+    height: 100%;
+    width: 100%;
+    background-repeat:repeat;
+    position:fixed;
+    top: 0px;
+    left: 0px;
+}
+a#close{
+    width:42px; height:43px;
+    background:url("../images/stockcatDish.png") no-repeat -113px 0;
+    float:left;   
+    margin:50px 150px; 
+}
+a#close:hover{ background-position: -157px 0;}
