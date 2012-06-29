@@ -15,3 +15,7 @@ Take a peek under the covers of the Lookup API demo at [markitondemand.github.co
 ###Stock Quote API Demo
 
 Take a peek under the covers of the Stock Quote API demo at [markitondemand.github.com/DataApis/StockQuoteSample](http://markitondemand.github.com/DataApis/StockQuoteSample/).
+
+###Updates
+
+28 June 2012 - We released a small update to the [Lookup API](http://dev.markitondemand.com/#companylookup) which fixes some stock symbols in the response. Please let us know if you find any [issues](https://github.com/markitondemand/DataApis/issues).
