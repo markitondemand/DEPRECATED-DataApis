@@ -1,139 +1,175 @@
 ﻿/** 
- * Version 1.1, Jan 2012
+ * Version 2.0
  */
 var Markit = {};
 /**
- * Define the TimeseriesService.
+ * Define the InteractiveChartApi.
  * First argument is symbol (string) for the quote. Examples: AAPL, MSFT, JNJ, GOOG.
  * Second argument is duration (int) for how many days of history to retrieve.
  */
-Markit.TimeseriesService = function(symbol,duration){
-    this.symbol = symbol;
+Markit.InteractiveChartApi = function(symbol,duration){
+    this.symbol = symbol.toUpperCase();
     this.duration = duration;
     this.PlotChart();
 };
 
-Markit.TimeseriesService.prototype.PlotChart = function(){
+Markit.InteractiveChartApi.prototype.PlotChart = function(){
     
+    var params = {
+        parameters: JSON.stringify( this.getInputParams() )
+    }
+
     //Make JSON request for timeseries data
     $.ajax({
         beforeSend:function(){
             $("#chartDemoContainer").text("Loading chart...");
         },
-        data: { 
-            symbol: this.symbol, 
-            duration: this.duration 
-        },
-        url: "http://dev.markitondemand.com/Api/Timeseries/jsonp",
+        data: params,
+        url: "http://dev.markitondemand.com/Api/v2/InteractiveChart/jsonp",
         dataType: "jsonp",
         context: this,
         success: function(json){
-        	//Catch errors
-		    if (!json.Data || json.Message){
-		        console.error("Error: ", json.Message);
-		        return;
-		    }
-            this.BuildDataAndChart(json);
+            //Catch errors
+            if (!json || json.Message){
+                console.error("Error: ", json.Message);
+                return;
+            }
+            this.render(json);
         },
-        error: function(){
-            alert("Couldn't generate chart.");
+        error: function(response,txtStatus){
+            console.log(response,txtStatus)
         }
     });
 };
 
-Markit.TimeseriesService.prototype.BuildDataAndChart = function(json){
-    var dateDS = json.Data.SeriesDates,
-        closeDS = json.Data.Series.close.values,
-        openDS = json.Data.Series.open.values,
-        closeDSLen = closeDS.length,
-        irregularIntervalDS = [];
-	
-    /**
-     * Build array of arrays of date & price values
-     * Market data is inherently irregular and HighCharts doesn't 
-     * really like irregularity (for axis intervals, anyway)
-     */
-    for (var i=0; i<closeDSLen;i++){
-        var dat = new Date(dateDS[i]);
-        var dateIn = Date.UTC(dat.getFullYear(), dat.getMonth(), dat.getDate());
-        var val = closeDS[i];
-        irregularIntervalDS.push([dateIn,val]);	
+Markit.InteractiveChartApi.prototype.getInputParams = function(){
+    return {  
+        Normalized: false,
+        NumberOfDays: this.duration,
+        DataPeriod: "Day",
+        Elements: [
+            {
+                Symbol: this.symbol,
+                Type: "price",
+                Params: ["ohlc"] //ohlc, c = close only
+            },
+            {
+                Symbol: this.symbol,
+                Type: "volume"
+            }
+        ]
+        //,LabelPeriod: 'Week',
+        //LabelInterval: 1
     }
-	
-    //set dataset and chart label
-    this.oChartOptions.series[0].data = irregularIntervalDS;
-    this.oChartOptions.title.text = "Price History of " + json.Data.Name + " (1 year)";
-    
-    //init chart
-    new Highcharts.Chart(this.oChartOptions);
 };
 
-//Define the HighCharts options
-Markit.TimeseriesService.prototype.oChartOptions = {
-	chart: {
-		renderTo: 'chartDemoContainer'
-	},
-	title:{},
-	subtitle: {
-		text: 'Source: Thomson Reuters DataScope / Markit On Demand'
-	},
-	xAxis: {
-		type: 'datetime'
-	},
-	yAxis: [{ // left y axis
-		title: {
-			text: null
-		},
-		labels: {
-			align: 'left',
-			x: 3,
-			y: 16,
-			formatter: function() {
-				return Highcharts.numberFormat(this.value, 0);
-			}
-		},
-		showFirstLabel: false
-	}, { // right y axis
-		linkedTo: 0,
-		gridLineWidth: 0,
-		opposite: true,
-		title: {
-			text: null
-		},
-		labels: {
-			align: 'right',
-			x: -3,
-			y: 16,
-			formatter: function() {
-				return Highcharts.numberFormat(this.value, 0);
-			}
-		},
-		showFirstLabel: false
-	}],
-	tooltip: {
-		shared: true,
-		crosshairs: true
-	},
-	plotOptions: {
-		series: {
-			marker: {
-				lineWidth: 1
-			}
-		}
-	},
-	series: [{
-		name: "Close price",
-		lineWidth: 2,
-		marker: {
-			radius: 0
-		}
-	}]
-	//,credits:{ enabled:false },
+Markit.InteractiveChartApi.prototype._fixDate = function(dateIn) {
+    var dat = new Date(dateIn);
+    return Date.UTC(dat.getFullYear(), dat.getMonth(), dat.getDate());
 };
 
-new Markit.TimeseriesService("GOOG", 365);
+Markit.InteractiveChartApi.prototype._getOHLC = function(json) {
+    var dates = json.Dates || [];
+    var elements = json.Elements || [];
+    var chartSeries = [];
 
-/**
-* Need help? Visit the API documentation at:
-* http://dev.markitondemand.com
-*/
+    if (elements[0]){
+
+        for (var i = 0, datLen = dates.length; i < datLen; i++) {
+            var dat = this._fixDate( dates[i] );
+            var pointData = [
+                dat,
+                elements[0].DataSeries['open'].values[i],
+                elements[0].DataSeries['high'].values[i],
+                elements[0].DataSeries['low'].values[i],
+                elements[0].DataSeries['close'].values[i]
+            ];
+            chartSeries.push( pointData );
+        };
+    }
+    return chartSeries;
+};
+
+Markit.InteractiveChartApi.prototype._getVolume = function(json) {
+    var dates = json.Dates || [];
+    var elements = json.Elements || [];
+    var chartSeries = [];
+
+    if (elements[1]){
+
+        for (var i = 0, datLen = dates.length; i < datLen; i++) {
+            var dat = this._fixDate( dates[i] );
+            var pointData = [
+                dat,
+                elements[1].DataSeries['volume'].values[i]
+            ];
+            chartSeries.push( pointData );
+        };
+    }
+    return chartSeries;
+};
+
+Markit.InteractiveChartApi.prototype.render = function(data) {
+    //console.log(data)
+    // split the data set into ohlc and volume
+    var ohlc = this._getOHLC(data),
+        volume = this._getVolume(data);
+
+    // set the allowed units for data grouping
+    var groupingUnits = [[
+        'week',                         // unit name
+        [1]                             // allowed multiples
+    ], [
+        'month',
+        [1, 2, 3, 4, 6]
+    ]];
+
+    // create the chart
+    $('#chartDemoContainer').highcharts('StockChart', {
+        
+        rangeSelector: {
+            selected: 1
+            //enabled: false
+        },
+
+        title: {
+            text: this.symbol + ' Historical Price'
+        },
+
+        yAxis: [{
+            title: {
+                text: 'OHLC'
+            },
+            height: 200,
+            lineWidth: 2
+        }, {
+            title: {
+                text: 'Volume'
+            },
+            top: 300,
+            height: 100,
+            offset: 0,
+            lineWidth: 2
+        }],
+        
+        series: [{
+            type: 'candlestick',
+            name: this.symbol,
+            data: ohlc,
+            dataGrouping: {
+                units: groupingUnits
+            }
+        }, {
+            type: 'column',
+            name: 'Volume',
+            data: volume,
+            yAxis: 1,
+            dataGrouping: {
+                units: groupingUnits
+            }
+        }],
+        credits: {
+            enabled:false
+        }
+    });
+};

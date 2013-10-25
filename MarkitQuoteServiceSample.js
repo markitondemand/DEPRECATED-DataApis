@@ -11,7 +11,7 @@ var Markit = {};
 Markit.QuoteService = function(sSymbol, fCallback) {
     this.symbol = sSymbol;
     this.fCallback = fCallback;
-    this.DATA_SRC = "http://dev.markitondemand.com/Api/Quote/jsonp";
+    this.DATA_SRC = "http://dev.markitondemand.com/Api/v2/Quote/jsonp";
     this.makeRequest();
 };
 /**
@@ -46,7 +46,7 @@ Markit.QuoteService.prototype.makeRequest = function() {
 new Markit.QuoteService("AAPL", function(jsonResult) {
 
     //Catch errors
-    if (!jsonResult.Data || jsonResult.Message){
+    if (!jsonResult || jsonResult.Message){
         console.error("Error: ", jsonResult.Message);
         return;
     }
@@ -55,7 +55,7 @@ new Markit.QuoteService("AAPL", function(jsonResult) {
     console.log(jsonResult);
 
     //Now proceed to do something with the data.
-    $("h1").first().text(jsonResult.Data.Name);
+    $("h1").first().text(jsonResult.Name);
 
     /**
     * Need help? Visit the API documentation at:

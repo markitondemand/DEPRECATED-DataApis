@@ -1,8 +1,8 @@
-#Markit On Demand - Data APIs
+#Markit On Demand - Market Data APIs (version 2)
 
 _Play with some real market data, have fun and show off. Send us your creation._
 
-We have a few APIs for you to play around with, and we’re working to add some more. Details on how to use the Lookup API, Stock Quote API and the Timeseries API for a historical pricing dataset [can be found here](http://dev.markitondemand.com). We have a full set of documentation available, too, so put on a pot of coffee and enjoy. 
+We've updated our APIs to v2! Our [suite of APIs](http://dev.markitondemand.com/) offer an opportunity to explore the complexity of financial data in building great tools. We have complete docs on [dev.markitondemand.com](http://dev.markitondemand.com/) and a handful of demos here in this GitHub project, so put on a pot of coffee and enjoy. Let us know if you find any [issues](https://github.com/markitondemand/DataApis/issues).
 
 ##Usage
 
@@ -16,6 +16,12 @@ Take a peek under the covers of the Lookup API demo at [markitondemand.github.co
 
 Take a peek under the covers of the Stock Quote API demo at [markitondemand.github.com/DataApis/StockQuoteSample](http://markitondemand.github.com/DataApis/StockQuoteSample/).
 
+###Interactive Chart API Demo
+
+Take a peek under the covers of the Lookup API demo at [markitondemand.github.com/DataApis/InteractiveChartSample](http://markitondemand.github.com/DataApis/InteractiveChartSample/).
+
 ###Updates
 
-28 June 2012 - We released a small update to the [Lookup API](http://dev.markitondemand.com/#companylookup) which fixes some stock symbols in the response. Please let us know if you find any [issues](https://github.com/markitondemand/DataApis/issues).
+25 October 2013 - Version 2! The base endpoint and interfaces haven't changed for version 1.1 APIs. The 1.1 [docs are still available](http://dev.markitondemand.com/v1).
+
+28 June 2012 - Version 1.1 - We released a small update to the [Lookup API](http://dev.markitondemand.com/#companylookup) which fixes some stock symbols in the response. Please let us know if you find any [issues](https://github.com/markitondemand/DataApis/issues).
