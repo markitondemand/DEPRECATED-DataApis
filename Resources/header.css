@@ -134,3 +134,9 @@ p.terms {
 	margin-top:20px;
 }
 
+.view,
+.view ~ p {
+	margin-top: 20px;
+}
+
+

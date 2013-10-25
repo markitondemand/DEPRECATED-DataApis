@@ -1,58 +1,5 @@
-p.terms {
-	font-size:11px;
-	margin-top:20px;
-}
 
 .content { margin-bottom:150px;}
-
-footer {
-	position:fixed;
-	left:0px;
-	bottom:0px;
-	width:100%;
-	border-top:1px solid #1A446B;
-	background-color:#00285F;
-	-webkit-box-shadow: 0 0 7px -2px black;
-	-moz-box-shadow: 0 0 7px -2px black;
-	-ms-box-shadow: 0 0 7px -2px black;
-	-o-box-shadow: 0 0 7px -2px black;
-	box-shadow: 0 0 7px -2px black;	
-	font-size: 10px;
-}
-
-footer div.pull-left {
-	margin-top:10px;	
-}
-
-footer p {
-	color:#fff;
-	font-size: 10px;
-	margin-bottom:0px;
-}
-
-footer ul { margin-bottom:25px; }
-
-footer li {
-	display:inline;
-}
-
-footer a {
-	color:#9CF;
-	padding-right:25px;	
-	display:block;
-	float:left;	
-}
-
-footer a:hover {
-	color:#9CF;	
-}
-
-footer .logo {
-	background: transparent url("http://dev.markitondemand.com/Content/Images/Branding24Bit.png") no-repeat top right;
-	height:30px;
-	width: 91px;
-	margin-top:20px;
-}
 
 
 /* Component containers
@@ -113,4 +60,9 @@ footer .logo {
 .ui-menu .ui-menu-item a.ui-state-active {
 	font-weight: normal;
 	background-color:#fff;
+}
+
+.ui-helper-hidden-accessible { 
+	display: none;
+	visibility: hidden;
 }
