@@ -25,7 +25,7 @@ Markit.InteractiveChartApi.prototype.PlotChart = function(){
             $("#chartDemoContainer").text("Loading chart...");
         },
         data: params,
-        url: "http://dev.markitqa.com/Api/v2/InteractiveChart/jsonp",
+        url: "http://dev.markitondemand.com/Api/v2/InteractiveChart/jsonp",
         dataType: "jsonp",
         context: this,
         success: function(json){
@@ -66,46 +66,6 @@ Markit.InteractiveChartApi.prototype.getInputParams = function(){
 Markit.InteractiveChartApi.prototype._fixDate = function(dateIn) {
     var dat = new Date(dateIn);
     return Date.UTC(dat.getFullYear(), dat.getMonth(), dat.getDate());
-};
-
-Markit.InteractiveChartApi.prototype.BuildDataAndChart = function(json){
-    console.log(json)
-
-    var dates = json.Dates || [];
-    var elements = json.Elements || [];
-    var chartSeries = [];
-
-    if (elements[0]){
-
-        for (var i = 0, datLen = dates.length; i < datLen; i++) {
-            var dat = this._fixDate( dates[i] );
-            var pointData = [
-                dat,
-                elements[0].DataSeries['open'].values[i],
-                elements[0].DataSeries['high'].values[i],
-                elements[0].DataSeries['low'].values[i],
-                elements[0].DataSeries['close'].values[i]
-            ];
-            chartSeries.push( pointData );
-        };
-    }
-
-    var options = this.oChartOptions;
-
-    options.series[0] =
-        {
-            name: this.symbol,
-            data: chartSeries,
-            color: '#fff',
-            tooltip: {
-                valueDecimals: 2
-            },
-            type: 'ohlc'
-        };
-
-
-    $('#chartDemoContainer').highcharts('StockChart', options);
-
 };
 
 Markit.InteractiveChartApi.prototype._getOHLC = function(json) {
@@ -212,104 +172,4 @@ Markit.InteractiveChartApi.prototype.render = function(data) {
             enabled:false
         }
     });
-};
-
-//Define the HighCharts options
-var fontface = '"Helvetica Neue",Helvetica,Arial,sans-serif';
-
-Markit.InteractiveChartApi.prototype.oChartOptions = {
-    rangeSelector: {
-        selected: 1
-    },
-
-    title: { },
-
-    yAxis: [{
-        title: {
-            text: 'OHLC'
-        },
-        height: 200,
-        lineWidth: 2
-    }, {
-        title: {
-            text: 'Volume'
-        },
-        top: 300,
-        height: 100,
-        offset: 0,
-        lineWidth: 2
-    }],
-    
-    series: []
-}
-
-Markit.InteractiveChartApi.prototype.oChartOptions___ = {
-    chart: {
-        backgroundColor: '#0B629A'
-    },
-    rangeSelector : {
-        enabled: false
-    },
-    navigator: {
-        maskFill: 'rgba(255, 255, 255, 0.75)'
-    },
-    title : { 
-        style: {
-            color: '#fff',
-            font: 'normal 16px ' + fontface
-        }
-    },
-    subtitle: {
-      style: {
-         color: '#fff',
-         font: 'normal 12px ' + fontface
-      }
-   },
-   xAxis: {
-      gridLineWidth: 1,
-      lineColor: '#86c9f4',
-      tickColor: '#86c9f4',
-      labels: {
-         style: {
-            color: '#fff',
-            font: '11px '  + fontface
-         }
-      },
-      title: {
-         style: {
-            color: '#fff',
-            fontWeight: 'bold',
-            fontSize: '12px',
-            fontFamily: fontface
-
-         }
-      }
-   },
-   yAxis: {
-      labels: {
-         style: {
-            color: '#fff',
-            font: '11px' + fontface
-         }
-      },
-      title: {
-         style: {
-            color: '#fff',
-            fontWeight: 'bold',
-            fontSize: '12px',
-            fontFamily: fontface
-         }
-      }
-   },
-   labels: {
-      style: {
-         color: '#fff'
-      }
-   },
-    exporting: {
-        enabled: true
-    },
-    series : [],
-    credits:{ enabled:false }
-    
 };
