@@ -18,7 +18,7 @@ Take a peek under the covers of the Stock Quote API demo at [markitondemand.gith
 
 ###Interactive Chart API Demo
 
-Take a peek under the covers of the Lookup API demo at [markitondemand.github.com/DataApis/InteractiveChartSample](http://markitondemand.github.com/DataApis/InteractiveChartSample/).
+Take a peek under the covers of the Interactive Chart API demo at [markitondemand.github.com/DataApis/InteractiveChartSample](http://markitondemand.github.com/DataApis/InteractiveChartSample/).
 
 ###Updates
 
