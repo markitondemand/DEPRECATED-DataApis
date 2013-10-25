@@ -1,0 +1,136 @@
+/* nav */
+.navbar { 
+	margin-bottom:1px;
+}
+.navbar .container {
+	width: 940px;
+}
+.navbar-inner { 
+	border-radius:0; 
+	border-bottom: 1px solid #D0D0D0;
+	border-top: 1px solid #CAD3DC;
+	box-shadow:none;
+	background-color:#fff;
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(100%, #e9f0f3));
+	background-image: -webkit-linear-gradient(top, white, #e9f0f3);
+	background-image: -moz-linear-gradient(top, white, #e9f0f3);
+	background-image: -ms-linear-gradient(top, white, #e9f0f3);
+	background-image: -o-linear-gradient(top, white, #e9f0f3);
+	background-image: linear-gradient(top, white, #e9f0f3);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#e9f0f3', GradientType=0);
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#ffffff', endColorstr='#e9f0f3')";
+}
+
+.navbar .nav > li {
+	padding:6px 2px 4px 0;
+}
+
+.navbar .nav > li > a {
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	-ms-border-radius: 3px;
+	-o-border-radius: 3px;
+	border-radius: 3px;
+	color: #1F4367;
+	padding:3px 15px 3px 15px;
+	text-shadow:none;
+	font-weight:bold;
+	font-size:12px;
+}
+
+.navbar .nav .active > a, 
+.navbar .nav .active > a:hover,
+.navbar .nav > li > a:active,
+.navbar .nav > li > a:hover {
+	color:#fff;
+	background-color: #003F79;
+}
+
+.navbar .nav > li > a .bug {
+	background-color: #E54F13;
+    border-radius: 3px 3px 3px 3px;
+    color: #fff;
+    font-size: 9px;
+    line-height: 9px;
+    margin: 3px 4px;
+    padding: 2px 4px 1px;
+}
+
+header {
+	background-color: #004b91;
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #004b91), color-stop(100%, #012b53));
+	background-image: -webkit-linear-gradient(top, #004b91, #012b53);
+	background-image: -moz-linear-gradient(top, #004b91, #012b53);
+	background-image: -ms-linear-gradient(top, #004b91, #012b53);
+	background-image: -o-linear-gradient(top, #004b91, #012b53);
+	background-image: linear-gradient(top, #004b91, #012b53);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#004b91', endColorstr='#012b53', GradientType=0);
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#004b91', endColorstr='#012b53')";	
+	height:120px;
+}
+
+header.home {
+	height:400px;
+}
+
+header .container {
+	height:120px;
+	background:transparent url("http://dev.markitondemand.com/Content/Images/bg_pageheader.png") top left no-repeat;
+}
+
+header.home .container {
+	height:400px;
+	background-image:url("http://dev.markitondemand.com/Content/Images/wave.png");
+}
+
+header h1 { padding:20px 0 0 0; }
+header h1 a {
+	display:block;
+	text-indent:-9999px;
+	background: url(http://dev.markitondemand.com/Content/Images/mod-logo.png) no-repeat;
+	width: 297px;
+	height: 34px;	
+}
+
+header.home h1 { padding-top:30px; }
+
+header.home p { 
+	padding-top:36px;
+	font-size:27px;
+	line-height:36px;
+	letter-spacing:.03em;
+	text-shadow:1px 1px 1px rgba(0, 0, 0, 0.3);
+	color:#fff;	
+}
+
+header.home .btn { 
+	margin-top:10px;	
+}
+
+.web {
+	background: transparent url("http://dev.markitondemand.com/Content/Images/bg_pagebodyweb.png") top left no-repeat;
+}
+
+
+.hero-unit {
+	background: transparent;
+	padding-top: 30px;
+	padding-bottom: 30px;
+	margin-bottom: 0;
+	padding-left: 0;
+	padding-right: 0;
+}
+
+.hero-unit h2 {
+	font-size: 40px;
+}
+
+h1, h2, h3, h4, h5 {
+	font-weight: 200;
+}
+
+p.terms {
+	font-size:11px;
+	margin-top:20px;
+}
+

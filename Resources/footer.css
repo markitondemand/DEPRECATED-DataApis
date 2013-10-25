@@ -1,0 +1,47 @@
+.pageFooter {
+	border-top: 1px solid #b2b2b2;
+	padding: 10px 30px 30px 30px;
+	font-size: 90%;
+	margin-top: 20px;
+}
+
+.pageFooter p small {
+	line-height: 23px;
+	float: left;
+	color: #999;
+}
+
+.pageFooter ul {
+	padding-right: 20px;
+}
+
+.pageFooter ul li {
+	float: left;
+	display: inline-block;
+}
+
+.pageFooter ul li a {
+	padding-left: 12px;
+	padding-right: 12px;
+	border-left: solid 1px #999;
+}
+
+.pageFooter ul li:first-child a {
+	border-left: none;
+}
+
+.pageFooter a {
+	color: #999;
+	font-size: 11px;
+	text-transform: uppercase;
+}
+
+.pageFooter img {
+	float: right;
+	margin-right: 6px;
+}
+
+.pageFooter .nav > li > a:hover {
+	background-color: transparent;
+	text-decoration: underline;
+}
