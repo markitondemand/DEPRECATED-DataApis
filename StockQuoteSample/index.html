@@ -32,7 +32,9 @@
 
 				<p>The Stock Quote API is useful for determining the current value of a company&rsquo;s stock. The response of this API contains price information for companies traded on the BATS Exchange in the United States. The result set includes the most current trading price of the share, the volume of that company&rsquo;s stock, the change and change percent since the previous day&rsquo;s close, and more.</p>
 
-				<p><a href="http://dev.markitondemand.com/#stockquote">Read the Stock Quote API documentation</a> or check out <a href="http://dev.markitondemand.com/">our other data APIs</a>.</p>
+				<p><a href="http://dev.markitondemand.com/#stockquote">Read the Stock Quote API documentation</a> or check out <a href="http://dev.markitondemand.com/">our other v2 APIs</a>.</p>
+
+				<p class="view"><a href="https://github.com/markitondemand/DataApis" class="btn btn-primary">View DataApis on GitHub</a></p>
 
 				<p><iframe src="http://ghbtns.com/github-btn.html?user=markitondemand&amp;type=follow" allowtransparency="true" frameborder="0" scrolling="0" width="177px" height="20px"></iframe> 
 				<a href="https://twitter.com/markitondemand" class="twitter-follow-button" data-show-count="false">Follow @markitondemand</a></p>
@@ -41,7 +43,7 @@
 	</div>
 	<div class="row content">
 		<div class="span12">
-			<h3>Demo</h3>
+			<h3 class="page-header">Demo</h3>
 			
 			<form class="well control-group form-inline">
 				<label>Try "AAPL" or "MSFT" or "GE":</label>
@@ -82,7 +84,7 @@
 				this.clearResult();
 
 			    //Catch errors
-			    if (!jsonResult.Data || jsonResult.Message){
+			    if (!jsonResult || jsonResult.Message){
 			        this.renderAlert(jsonResult);
 			        return;
 			    }
@@ -111,7 +113,7 @@
 
 	Markit.QuoteService.prototype.success = function(jsonResult){
 		var $container = $("<div class='hide' id='resultContainer' />");
-		$container.append("<h4>"+jsonResult.Data.Name+" ("+jsonResult.Data.Symbol+")</h4>");
+		$container.append("<h4>"+jsonResult.Name+" ("+jsonResult.Symbol+")</h4>");
 		$container.append(this.renderResultTable(jsonResult));
 
 		$("form").after($container);
@@ -141,11 +143,11 @@
 		tableHeadCells.push("</tr>");
 
 		tableCells.push("<tr>");
-		tableCells.push("<td>$",jsonResult.Data.LastPrice,"</td>");
-		tableCells.push("<td>",this.formatChgPct(jsonResult.Data.Change),"</td>");
-		tableCells.push("<td>",this.formatChgPct(jsonResult.Data.ChangePercent),"%</td>");
-		tableCells.push("<td>",jsonResult.Data.ChangePercentYTD.toFixed(2),"%</td>");
-		tableCells.push("<td>",jsonResult.Data.Timestamp,"</td>");
+		tableCells.push("<td>$",jsonResult.LastPrice,"</td>");
+		tableCells.push("<td>",this.formatChgPct(jsonResult.Change),"</td>");
+		tableCells.push("<td>",this.formatChgPct(jsonResult.ChangePercent),"%</td>");
+		tableCells.push("<td>",jsonResult.ChangePercentYTD.toFixed(2),"%</td>");
+		tableCells.push("<td>",jsonResult.Timestamp,"</td>");
 		tableCells.push("</tr>");
 
 		$table.addClass("table table-bordered table-striped");			
