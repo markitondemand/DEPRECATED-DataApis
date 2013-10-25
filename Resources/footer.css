@@ -1,18 +1,18 @@
 .pageFooter {
 	border-top: 1px solid #b2b2b2;
-	padding: 10px 30px 30px 30px;
-	font-size: 90%;
+	padding: 10px 0 30px 0;
+	font-size: 11px;
 	margin-top: 20px;
 }
 
-.pageFooter p small {
+.pageFooter small {
 	line-height: 23px;
 	float: left;
 	color: #999;
 }
 
 .pageFooter ul {
-	padding-right: 20px;
+	padding-right: 10px;
 }
 
 .pageFooter ul li {
@@ -24,6 +24,7 @@
 	padding-left: 12px;
 	padding-right: 12px;
 	border-left: solid 1px #999;
+	font-size: 10px;
 }
 
 .pageFooter ul li:first-child a {
