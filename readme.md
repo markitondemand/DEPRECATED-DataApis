@@ -22,7 +22,7 @@ Take a peek under the covers of the Interactive Chart API demo at [markitondeman
 
 ###Updates
 
-3 January 2014 - Removed Sovereign CDS API as it was made available for the FinTech Hackathon NYC 2013.
+6 January 2014 - Removed Sovereign CDS API as it was made available for the FinTech Hackathon NYC 2013.
 
 25 October 2013 - Version 2! The base endpoint and interfaces haven't changed for version 1.1 APIs. The 1.1 [docs are still available](http://dev.markitondemand.com/v1).
 
