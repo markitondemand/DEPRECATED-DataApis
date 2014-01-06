@@ -1,4 +1,4 @@
-#Markit On Demand - Market Data APIs (version 2)
+#Markit On Demand - Market Data APIs (version 2) [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/markitondemand/dataapis/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
 _Play with some real market data, have fun and show off. Send us your creation._
 
