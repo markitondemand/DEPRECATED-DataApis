@@ -1,4 +1,4 @@
-#Markit On Demand - Market Data APIs (version 2) [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/markitondemand/dataapis/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+#Markit On Demand - Market Data APIs (version 2)
 
 _Play with some real market data, have fun and show off. Send us your creation._
 
@@ -10,15 +10,15 @@ This repository contains a couple usage examples to get you started, but you sho
 
 ###Lookup API Demo
 
-Take a peek under the covers of the Lookup API demo at [markitondemand.github.com/DataApis/LookupSample](http://markitondemand.github.com/DataApis/LookupSample/).
+Take a peek under the covers of the Lookup API demo at [markitondemand.github.io/DataApis/LookupSample](http://markitondemand.github.io/DataApis/LookupSample/).
 
 ###Stock Quote API Demo
 
-Take a peek under the covers of the Stock Quote API demo at [markitondemand.github.com/DataApis/StockQuoteSample](http://markitondemand.github.com/DataApis/StockQuoteSample/).
+Take a peek under the covers of the Stock Quote API demo at [markitondemand.github.io/DataApis/StockQuoteSample](http://markitondemand.github.io/DataApis/StockQuoteSample/).
 
 ###Interactive Chart API Demo
 
-Take a peek under the covers of the Interactive Chart API demo at [markitondemand.github.com/DataApis/InteractiveChartSample](http://markitondemand.github.com/DataApis/InteractiveChartSample/).
+Take a peek under the covers of the Interactive Chart API demo at [markitondemand.github.io/DataApis/InteractiveChartSample](http://markitondemand.github.io/DataApis/InteractiveChartSample/).
 
 ###Updates
 
